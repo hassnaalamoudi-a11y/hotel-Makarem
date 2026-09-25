@@ -285,7 +285,7 @@ export function HeroSection() {
           <div className="hero-search-bar mt-10">
             <form
               onSubmit={handleSearch}
-              className="inline-flex flex-col sm:flex-row items-stretch sm:items-center rounded-3xl sm:rounded-full bg-white p-2 sm:p-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.45)] border border-white/30 text-[#1C1613] gap-2 max-w-2xl w-full transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.55)]"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-3xl sm:rounded-full bg-white p-2 sm:p-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.45)] border border-white/30 text-[#1C1613] gap-2 max-w-2xl w-full transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.55)]"
             >
               {/* Check-in Date */}
               <div className="flex flex-1 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">

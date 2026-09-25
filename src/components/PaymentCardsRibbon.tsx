@@ -35,7 +35,7 @@ export function PaymentCardsRibbon() {
                   ? "نوفر لكم تجربة حجز سلسة وآمنة عبر تشكيلة واسعة من البطاقات الائتمانية والخصم المباشر، مع إمكانية التقسيط الميسر بدون فوائد مع البنوك المعتمدة."
                   : "Enjoy a smooth and secure booking experience with wide credit & debit card acceptance and 0% installment plans with certified banks."}
               </p>
-              <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="flex items-center gap-2 text-xs font-semibold text-body">
                   <CheckCircle2 className="h-4 w-4 text-gold shrink-0" />
                   <span>{isAr ? "تأكيد فوري للحجز" : "Instant Confirmation"}</span>

@@ -84,6 +84,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px; /* offset for fixed navbar */
+  overflow-x: hidden;
 }
 
 html.lenis,

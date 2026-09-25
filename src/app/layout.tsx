@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl" data-theme="light" className="h-full antialiased" suppressHydrationWarning>
       <body
-        className={`flex min-h-full flex-col ${jakarta.variable} ${tajawal.variable}`}
+        className={`flex min-h-full flex-col overflow-x-hidden ${jakarta.variable} ${tajawal.variable}`}
       >
         <script
           type="application/ld+json"

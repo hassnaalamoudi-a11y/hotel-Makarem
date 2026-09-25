@@ -212,7 +212,7 @@ function Amenities() {
           </Reveal>
         </div>
 
-        <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {amenities.slice(0, 4).map((a) => {
             const Icon = iconMap[a.icon] ?? iconMap["concierge-bell"];
             return (
@@ -241,7 +241,7 @@ function StatsRow() {
   const { t } = useI18n();
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-2 gap-4 rounded-[2.5rem] bg-card p-8 card-shadow border border-line/60 md:grid-cols-4 md:p-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-[2.5rem] bg-card p-8 card-shadow border border-line/60 md:grid-cols-4 md:p-10">
         {stats.map((s, i) => (
           <Reveal key={s.label.en} delay={i * 0.08} className="text-center">
             <p className="text-3xl font-extrabold text-heading md:text-5xl font-mono" dir="ltr">

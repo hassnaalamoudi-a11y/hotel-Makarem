@@ -245,7 +245,7 @@ function StatsRow() {
         {stats.map((s, i) => (
           <Reveal key={s.label.en} delay={i * 0.08} className="text-center">
             <p className="text-3xl font-extrabold text-heading md:text-5xl font-mono" dir="ltr">
-              <AnimatedCounter target={s.value} decimals={s.decimals} />
+              <AnimatedCounter value={s.value} decimals={s.decimals} />
               {s.suffix ? t(s.suffix) : ""}
             </p>
             <p className="mt-2 text-xs sm:text-sm font-bold text-muted">{t(s.label)}</p>

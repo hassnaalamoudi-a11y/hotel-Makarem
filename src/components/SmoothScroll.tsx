@@ -30,7 +30,37 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       return;
     }
 
-    // Initialize Lenis with luxury hospitality smooth curves
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(pointer: coarse)").matches ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0);
+
+    // On mobile touch devices, use native hardware-accelerated scrolling for 120Hz fluid response
+    if (isTouchDevice) {
+      const handleNativeAnchor = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        const anchor = target.closest("a[href^='#']") as HTMLAnchorElement | null;
+        if (!anchor) return;
+
+        const hash = anchor.getAttribute("href");
+        if (!hash || hash === "#") return;
+
+        const targetEl = document.querySelector(hash);
+        if (!targetEl) return;
+
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", hash);
+      };
+
+      document.addEventListener("click", handleNativeAnchor);
+      return () => {
+        document.removeEventListener("click", handleNativeAnchor);
+      };
+    }
+
+    // Initialize Lenis on desktop with luxury hospitality smooth curves
     const lenisInstance = new Lenis({
       duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -38,7 +68,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.0,
       infinite: false,
     });
 

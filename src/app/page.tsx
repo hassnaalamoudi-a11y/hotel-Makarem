@@ -49,7 +49,7 @@ function About() {
   const { t, locale } = useI18n();
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:py-20 sm:px-6 md:py-28 lg:px-8 overflow-x-clip">
       <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
         {/* Text side */}
         <Reveal>
@@ -93,9 +93,9 @@ function About() {
         </Reveal>
 
         {/* Overlapping images with scrubbed parallax & zoom */}
-        <div className="relative mx-auto h-[420px] w-full max-w-[480px] md:h-[520px]">
+        <div className="relative mx-auto h-[380px] sm:h-[420px] w-full max-w-[480px] md:h-[520px]">
           <SlideFrom from="start" className="absolute start-0 top-0 w-[72%]">
-            <div className="about-image-zoom img-zoom-hover relative h-[340px] overflow-hidden rounded-[2rem] card-shadow md:h-[440px] border border-line/60">
+            <div className="about-image-zoom img-zoom-hover relative h-[300px] sm:h-[340px] overflow-hidden rounded-[2rem] card-shadow md:h-[440px] border border-line/60">
               <SkeletonImage
                 src="https://makaremhotels.com/_next/image?url=https%3A%2F%2Ftbi-p-001.sitecorecontenthub.cloud%2Fapi%2Fpublic%2Fcontent%2F0b9d5595c9314954aaba0c4f2908e7dcxmc-gallery-desktop%3Fv%3D9197bbd2&w=1920&q=75"
                 alt={locale === "ar" ? "بهو فندق مكارم أجياد" : "Makarem Ajyad Grand Lobby"}
@@ -105,7 +105,7 @@ function About() {
             </div>
           </SlideFrom>
           <SlideFrom from="end" delay={0.25} className="absolute bottom-0 end-0 w-[54%]">
-            <div className="about-image-zoom img-zoom-hover relative h-[220px] overflow-hidden rounded-[2rem] border-8 border-[var(--bg)] card-shadow md:h-[280px]">
+            <div className="about-image-zoom img-zoom-hover relative h-[200px] sm:h-[220px] overflow-hidden rounded-[2rem] border-4 sm:border-8 border-[var(--bg)] card-shadow md:h-[280px]">
               <SkeletonImage
                 src="https://makaremhotels.com/_next/image?url=https%3A%2F%2Ftbi-p-001.sitecorecontenthub.cloud%2Fapi%2Fpublic%2Fcontent%2F8ca9ffd61581420c80a829a6f4254461%3Fv%3D9ea28d2b&w=1920&q=75"
                 alt={locale === "ar" ? "أجنحة مكارم أجياد الفاخرة" : "Makarem Ajyad Luxury Suites"}
@@ -115,12 +115,12 @@ function About() {
             </div>
           </SlideFrom>
           {/* Floating badge with GSAP Parallax Float */}
-          <div className="gsap-float absolute -bottom-2 start-6 z-20">
-            <div className="rounded-2xl bg-brand px-6 py-4 text-[var(--on-brand)] card-shadow border border-gold/30 badge-shimmer">
-              <p className="text-2xl font-extrabold leading-none font-mono" dir="ltr">
-                300<span className="text-sm"> {locale === "ar" ? "متر" : "m"}</span>
+          <div className="gsap-float absolute -bottom-2 start-3 sm:start-6 z-20">
+            <div className="rounded-2xl bg-brand px-4 py-3 sm:px-6 sm:py-4 text-[var(--on-brand)] card-shadow border border-gold/30 badge-shimmer">
+              <p className="text-xl sm:text-2xl font-extrabold leading-none font-mono" dir="ltr">
+                300<span className="text-xs sm:text-sm"> {locale === "ar" ? "متر" : "m"}</span>
               </p>
-              <p className="mt-1 text-xs opacity-90 font-bold">
+              <p className="mt-1 text-[0.65rem] sm:text-xs opacity-90 font-bold">
                 {locale === "ar" ? "من الحرم وبرج الساعة" : "to Haram & Clock Tower"}
               </p>
             </div>
@@ -240,15 +240,15 @@ function Amenities() {
 function StatsRow() {
   const { t } = useI18n();
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-[2.5rem] bg-card p-8 card-shadow border border-line/60 md:grid-cols-4 md:p-10">
+    <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-2 gap-4 rounded-3xl sm:rounded-[2.5rem] bg-card p-5 sm:p-8 card-shadow border border-line/60 md:grid-cols-4 md:p-10">
         {stats.map((s, i) => (
           <Reveal key={s.label.en} delay={i * 0.08} className="text-center">
-            <p className="text-3xl font-extrabold text-heading md:text-5xl font-mono" dir="ltr">
+            <p className="text-2xl sm:text-3xl font-extrabold text-heading md:text-5xl font-mono" dir="ltr">
               <AnimatedCounter value={s.value} decimals={s.decimals} />
               {s.suffix ? t(s.suffix) : ""}
             </p>
-            <p className="mt-2 text-xs sm:text-sm font-bold text-muted">{t(s.label)}</p>
+            <p className="mt-1.5 sm:mt-2 text-[0.7rem] sm:text-sm font-bold text-muted">{t(s.label)}</p>
           </Reveal>
         ))}
       </div>

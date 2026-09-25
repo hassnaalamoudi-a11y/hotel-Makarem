@@ -13,22 +13,22 @@ function Wordmark() {
   const isAr = locale === "ar";
 
   return (
-    <Link href="/" className="flex shrink-0 items-center gap-3.5 group text-white">
+    <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3.5 group text-white">
       {/* English Makarem Logo Script */}
       <div className="flex flex-col text-start leading-none">
-        <span className="font-serif italic text-xl font-bold tracking-wide text-[#EAD8B7] group-hover:text-gold transition-colors">
+        <span className="font-serif italic text-lg sm:text-xl font-bold tracking-wide text-[#EAD8B7] group-hover:text-gold transition-colors">
           Makarem
         </span>
-        <span className="text-[0.62rem] font-extrabold uppercase tracking-[0.28em] text-white/90 mt-0.5">
+        <span className="text-[0.55rem] sm:text-[0.62rem] font-extrabold uppercase tracking-[0.18em] sm:tracking-[0.28em] text-white/90 mt-0.5">
           AJYAD HOTEL
         </span>
       </div>
 
-      {/* Vertical Divider */}
-      <span className="h-8 w-px bg-white/25 mx-0.5" aria-hidden />
+      {/* Vertical Divider - only on tablet/desktop */}
+      <span className="h-8 w-px bg-white/25 mx-0.5 hidden sm:block" aria-hidden />
 
-      {/* Arabic Calligraphy Style */}
-      <div className="flex flex-col text-start leading-none">
+      {/* Arabic Calligraphy Style - only on tablet/desktop */}
+      <div className="hidden sm:flex flex-col text-start leading-none">
         <span className="font-display text-lg font-black tracking-tight text-[#EAD8B7] group-hover:text-gold transition-colors">
           {isAr ? "مكارم أجياد" : "فندق مكارم"}
         </span>
@@ -71,16 +71,16 @@ export function Navbar() {
   const isAr = locale === "ar";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 transition-all duration-500">
+    <header className="fixed inset-x-0 top-0 z-50 transition-all duration-500 w-full overflow-hidden">
       {/* Navbar Container */}
       <div
-        className={`mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8 transition-all duration-500 ${
+        className={`mx-auto flex h-16 sm:h-20 w-full max-w-7xl items-center justify-between px-3.5 sm:px-8 transition-all duration-500 ${
           scrolled
-            ? "bg-[#140F0C]/90 backdrop-blur-xl border-b border-gold/20 shadow-2xl py-3"
-            : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-4"
+            ? "bg-[#140F0C]/90 backdrop-blur-xl border-b border-gold/20 shadow-2xl py-2 sm:py-3"
+            : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-2.5 sm:py-4"
         }`}
       >
-        {/* Left: Dual Logo */}
+        {/* Left: Responsive Logo */}
         <Wordmark />
 
         {/* Center Desktop Navigation */}
@@ -138,34 +138,24 @@ export function Navbar() {
         </div>
 
         {/* Mobile menu triggers */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden">
           <ThemeToggle variant="icon" />
-
-          <a
-            href={hotel.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-9 items-center gap-1.5 rounded-full bg-[#B99657] px-3 text-[0.75rem] font-extrabold text-[#1A1410]"
-          >
-            <Calendar className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">{isAr ? "احجز" : "Book"}</span>
-          </a>
 
           <button
             onClick={toggle}
             aria-label="Switch language"
-            className="flex h-9 items-center gap-1 rounded-full bg-white/10 px-2.5 text-xs font-bold text-white border border-white/20"
+            className="flex h-8 sm:h-9 items-center justify-center rounded-full bg-white/10 px-2.5 text-xs font-bold text-white border border-white/20 hover:bg-white/20 transition-colors"
           >
             <span>{isAr ? "EN" : "عربي"}</span>
           </button>
 
           <button
             onClick={() => setOpen((o) => !o)}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
+            className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-colors"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
-            {open ? <X className="h-5 w-5 text-gold" /> : <Menu className="h-5 w-5" />}
+            {open ? <X className="h-4 w-4 sm:h-5 sm:w-5 text-gold" /> : <Menu className="h-4 w-4 sm:h-5 sm:w-5" />}
           </button>
         </div>
       </div>

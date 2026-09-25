@@ -19,7 +19,7 @@ export function PaymentCardsRibbon() {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-card border border-line/70 p-7 sm:p-10 card-shadow">
+        <div className="relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-card border border-line/70 p-5 sm:p-8 md:p-10 card-shadow">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Info Column */}
             <div className="lg:col-span-6 flex flex-col gap-3">
@@ -60,11 +60,11 @@ export function PaymentCardsRibbon() {
               <span className="text-xs font-bold uppercase tracking-wider text-muted">
                 {isAr ? "البطاقات وطرق الدفع المقبولة" : "Accepted Payment Methods"}
               </span>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 {paymentMethods.map((pm) => (
                   <div
                     key={pm.name}
-                    className={`flex h-12 min-w-[90px] items-center justify-center rounded-2xl bg-gradient-to-br ${pm.color} px-4 py-2 text-white font-extrabold text-sm shadow-md transition-transform hover:scale-105 select-none`}
+                    className={`flex h-11 sm:h-12 flex-1 min-w-[75px] sm:min-w-[90px] items-center justify-center rounded-2xl bg-gradient-to-br ${pm.color} px-3 py-2 text-white font-extrabold text-xs sm:text-sm shadow-md transition-transform hover:scale-105 select-none`}
                   >
                     <span>{pm.label}</span>
                   </div>

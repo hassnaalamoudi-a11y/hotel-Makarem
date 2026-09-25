@@ -228,10 +228,10 @@ export function HeroSection() {
           </p>
 
           {/* 3 Pillars / Feature Highlights with Dividers */}
-          <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 pt-2 w-full max-w-xl">
             {/* Feature 1: Location */}
-            <div className="hero-pillar flex items-center gap-3 transition-transform duration-300 hover:scale-105">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#EAD8B7] border border-white/15 backdrop-blur-sm shadow-sm">
+            <div className="hero-pillar flex items-center gap-3 transition-transform duration-300 hover:scale-105 bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl border border-white/10 sm:border-0">
+              <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#EAD8B7] border border-white/15 backdrop-blur-sm shadow-sm">
                 <MapPin className="h-5 w-5" />
               </div>
               <div className="flex flex-col leading-tight">
@@ -244,12 +244,9 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Vertical Divider */}
-            <span className="h-9 w-px bg-white/20 hidden sm:block" aria-hidden />
-
             {/* Feature 2: Rooms */}
-            <div className="hero-pillar flex items-center gap-3 transition-transform duration-300 hover:scale-105">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#EAD8B7] border border-white/15 backdrop-blur-sm shadow-sm">
+            <div className="hero-pillar flex items-center gap-3 transition-transform duration-300 hover:scale-105 bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl border border-white/10 sm:border-0">
+              <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#EAD8B7] border border-white/15 backdrop-blur-sm shadow-sm">
                 <BedDouble className="h-5 w-5" />
               </div>
               <div className="flex flex-col leading-tight">
@@ -262,12 +259,9 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Vertical Divider */}
-            <span className="h-9 w-px bg-white/20 hidden sm:block" aria-hidden />
-
             {/* Feature 3: Service */}
-            <div className="hero-pillar flex items-center gap-3 transition-transform duration-300 hover:scale-105">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#EAD8B7] border border-white/15 backdrop-blur-sm shadow-sm">
+            <div className="hero-pillar flex items-center gap-3 transition-transform duration-300 hover:scale-105 bg-white/5 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl border border-white/10 sm:border-0">
+              <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#EAD8B7] border border-white/15 backdrop-blur-sm shadow-sm">
                 <Sparkles className="h-5 w-5" />
               </div>
               <div className="flex flex-col leading-tight">
@@ -282,15 +276,15 @@ export function HeroSection() {
           </div>
 
           {/* Floating Booking Search Bar */}
-          <div className="hero-search-bar mt-10">
+          <div className="hero-search-bar mt-8 sm:mt-10 w-full max-w-2xl">
             <form
               onSubmit={handleSearch}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-3xl sm:rounded-full bg-white p-2 sm:p-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.45)] border border-white/30 text-[#1C1613] gap-2 max-w-2xl w-full transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.55)]"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center rounded-3xl sm:rounded-full bg-white p-2 sm:p-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.45)] border border-white/30 text-[#1C1613] gap-2 w-full transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.55)]"
             >
               {/* Check-in Date */}
-              <div className="flex flex-1 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">
+              <div className="flex flex-1 min-w-0 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">
                 <Calendar className="h-4 w-4 text-[#9D7743] shrink-0" />
-                <div className="flex flex-col leading-none text-start">
+                <div className="flex flex-col flex-1 min-w-0 leading-none text-start">
                   <span className="text-[0.65rem] font-bold text-neutral-500 uppercase">
                     {isAr ? "تاريخ الوصول" : "Check-in"}
                   </span>
@@ -298,18 +292,18 @@ export function HeroSection() {
                     type="date"
                     value={checkin}
                     onChange={(e) => setCheckin(e.target.value)}
-                    className="bg-transparent text-xs font-bold text-[#1C1613] outline-none cursor-pointer mt-0.5"
+                    className="bg-transparent text-xs font-bold text-[#1C1613] outline-none cursor-pointer mt-0.5 w-full min-w-0"
                   />
                 </div>
               </div>
 
               {/* Divider */}
-              <span className="h-7 w-px bg-neutral-200 hidden sm:block" aria-hidden />
+              <span className="h-7 w-px bg-neutral-200 hidden sm:block shrink-0" aria-hidden />
 
               {/* Check-out Date */}
-              <div className="flex flex-1 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">
+              <div className="flex flex-1 min-w-0 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">
                 <Calendar className="h-4 w-4 text-[#9D7743] shrink-0" />
-                <div className="flex flex-col leading-none text-start">
+                <div className="flex flex-col flex-1 min-w-0 leading-none text-start">
                   <span className="text-[0.65rem] font-bold text-neutral-500 uppercase">
                     {isAr ? "تاريخ المغادرة" : "Check-out"}
                   </span>
@@ -318,25 +312,25 @@ export function HeroSection() {
                     value={checkout}
                     min={checkin}
                     onChange={(e) => setCheckout(e.target.value)}
-                    className="bg-transparent text-xs font-bold text-[#1C1613] outline-none cursor-pointer mt-0.5"
+                    className="bg-transparent text-xs font-bold text-[#1C1613] outline-none cursor-pointer mt-0.5 w-full min-w-0"
                   />
                 </div>
               </div>
 
               {/* Divider */}
-              <span className="h-7 w-px bg-neutral-200 hidden sm:block" aria-hidden />
+              <span className="h-7 w-px bg-neutral-200 hidden sm:block shrink-0" aria-hidden />
 
               {/* Guests Selector */}
-              <div className="flex flex-1 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">
+              <div className="flex flex-1 min-w-0 items-center gap-2.5 px-3.5 py-2 hover:bg-black/5 rounded-full transition-colors">
                 <Users className="h-4 w-4 text-[#9D7743] shrink-0" />
-                <div className="flex flex-col leading-none text-start">
+                <div className="flex flex-col flex-1 min-w-0 leading-none text-start">
                   <span className="text-[0.65rem] font-bold text-neutral-500 uppercase">
                     {isAr ? "عدد النزلاء" : "Guests"}
                   </span>
                   <select
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
-                    className="bg-transparent text-xs font-bold text-[#1C1613] outline-none cursor-pointer mt-0.5 pr-2"
+                    className="bg-transparent text-xs font-bold text-[#1C1613] outline-none cursor-pointer mt-0.5 pr-2 w-full min-w-0"
                   >
                     {[1, 2, 3, 4, 5, 6].map((num) => (
                       <option key={num} value={num}>
@@ -350,7 +344,7 @@ export function HeroSection() {
               {/* Submit Search Button */}
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 rounded-full bg-[#9D7743] hover:bg-[#8B6734] active:scale-95 text-white px-6 py-3.5 text-xs font-extrabold shadow-md transition-all sm:shrink-0"
+                className="flex items-center justify-center gap-2 rounded-full bg-[#9D7743] hover:bg-[#8B6734] active:scale-95 text-white px-6 py-3.5 text-xs font-extrabold shadow-md transition-all sm:shrink-0 w-full sm:w-auto"
               >
                 <Search className="h-3.5 w-3.5" />
                 <span>{isAr ? "البحث عن الغرف" : "Search Rooms"}</span>
@@ -361,26 +355,26 @@ export function HeroSection() {
       </div>
 
       {/* Bottom Center Decorative Islamic Emblem and Motif */}
-      <div className="hero-emblem relative z-10 mx-auto w-full max-w-4xl px-4 mt-8 flex flex-col items-center justify-center text-center">
-        <div className="flex items-center gap-4 w-full justify-center">
-          <span className="h-px bg-gradient-to-r from-transparent via-gold/40 to-gold/70 flex-1" />
+      <div className="hero-emblem relative z-10 mx-auto w-full max-w-4xl px-4 mt-8 flex flex-col items-center justify-center text-center overflow-hidden">
+        <div className="flex items-center gap-2 sm:gap-4 w-full justify-center max-w-full">
+          <span className="h-px bg-gradient-to-r from-transparent via-gold/40 to-gold/70 flex-1 min-w-[20px]" />
           
           {/* Islamic Arch Motif */}
-          <div className="flex items-center gap-2 text-[#D8C29D]">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[#D8C29D] shrink-0">
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="h-5 w-5 opacity-90"
+              className="h-4 w-4 sm:h-5 sm:w-5 opacity-90 shrink-0"
               aria-hidden
             >
               <path d="M12 2C9 5.5 4 8 4 13.5C4 18 7.5 21 12 21C16.5 21 20 18 20 13.5C20 8 15 5.5 12 2ZM12 4.5C14.2 7.2 18 9.5 18 13.5C18 16.8 15.3 19 12 19C8.7 19 6 16.8 6 13.5C6 9.5 9.8 7.2 12 4.5Z" />
             </svg>
-            <span className="text-[0.65rem] sm:text-xs font-extrabold uppercase tracking-[0.28em] text-[#D8C29D]">
+            <span className="text-[0.6rem] sm:text-xs font-extrabold uppercase tracking-[0.12em] sm:tracking-[0.28em] text-[#D8C29D]">
               MAKAREM AJYAD HOTEL • MAKKAH
             </span>
           </div>
 
-          <span className="h-px bg-gradient-to-l from-transparent via-gold/40 to-gold/70 flex-1" />
+          <span className="h-px bg-gradient-to-l from-transparent via-gold/40 to-gold/70 flex-1 min-w-[20px]" />
         </div>
       </div>
     </section>

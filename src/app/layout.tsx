@@ -70,6 +70,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#faf6f1" },
     { media: "(prefers-color-scheme: dark)", color: "#1c1613" },
@@ -110,9 +113,9 @@ const hotelJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" data-theme="light" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" data-theme="light" className="h-full antialiased overflow-x-clip" suppressHydrationWarning>
       <body
-        className={`flex min-h-full flex-col overflow-x-hidden ${jakarta.variable} ${tajawal.variable}`}
+        className={`flex min-h-full flex-col w-full max-w-full overflow-x-clip ${jakarta.variable} ${tajawal.variable}`}
       >
         <script
           type="application/ld+json"

@@ -1,0 +1,10 @@
+▲ Next.js 16.3.6 (Turbopack)
+- Local:         http://localhost:3010
+- Network:       http://192.168.56.1:3010
+✓ Ready in 670ms
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\computeronline because it would include your home directory (C:\Users\computeronline).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 63ms
+
+○ Compiling / ...

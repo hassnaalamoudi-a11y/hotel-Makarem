@@ -1,0 +1,601 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════
+   AGIED HOTEL — "Elevate" design system
+   Warm cream / soft beige / deep espresso / muted gold, white
+   rounded cards, pill buttons. Light + dark via [data-theme].
+   All colors flow through CSS variables → theme switching is
+   a single attribute change, transitioned over ~400ms.
+   ════════════════════════════════════════════════════════════════ */
+
+/* Dark: usable with Tailwind's dark: variant AND our tokens */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* Typography — Latin: Plus Jakarta Sans, Arabic: Tajawal */
+  --font-display: var(--font-jakarta), var(--font-tajawal), sans-serif;
+  --font-body: var(--font-jakarta), var(--font-tajawal), sans-serif;
+
+  /* Semantic tokens, mapped from the variables below */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-band: var(--band);
+  --color-card: var(--card);
+  --color-heading: var(--heading);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-on-brand: var(--on-brand);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-footer: var(--footer);
+  --color-overlay-ink: var(--overlay-ink);
+}
+
+:root,
+[data-theme="light"] {
+  /* Elevate palette — warm cream base */
+  --bg: #faf6f1;
+  --surface: #ffffff;
+  --band: #ebdccb;
+  --card: #ffffff;
+  --heading: #3b2f2a;
+  --body: #5c4f47;
+  --muted: #8a7a6f;
+  --line: #e7dccc;
+  --brand: #3b2f2a;
+  --brand-strong: #2c221e;
+  --on-brand: #faf6f1;
+  --gold: #b99657;
+  --gold-soft: #f3e8d3;
+  --footer: #221b17;
+  --overlay-ink: 30 22 16; /* rgb triple for gradient overlays on photos */
+  --shadow-color: 59 47 42;
+  --card-shadow-float: 0 8px 32px -8px rgb(59 47 42 / 0.16), 0 2px 8px rgb(59 47 42 / 0.06);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  /* Dark: deep espresso/charcoal (not pure black), warm gold */
+  --bg: #1c1613;
+  --surface: #262019;
+  --band: #2f2820;
+  --card: #2b241d;
+  --heading: #f3ece2;
+  --body: #cfc3b6;
+  --muted: #9b8d80;
+  --line: #3d342a;
+  --brand: #e5cd9b;
+  --brand-strong: #f0debb;
+  --on-brand: #241d17;
+  --gold: #d9b978;
+  --gold-soft: #3a3226;
+  --footer: #14100d;
+  --overlay-ink: 12 9 7;
+  --shadow-color: 0 0 0;
+  --card-shadow-float: 0 8px 32px -8px rgb(0 0 0 / 0.5), 0 2px 8px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
+}
+
+/* ── Base & Lenis Smooth Scroll ───────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* offset for fixed navbar */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Smooth cross-fade of theme colors (~400ms) on every themed surface */
+body,
+.nav-shell,
+.band,
+.card,
+.pill,
+.footer-dark,
+input,
+select,
+textarea {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--body);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: #241d17;
+}
+
+/* Form spinner */
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Elegant thin scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Soft elevation on white cards */
+.card-shadow {
+  box-shadow:
+    0 1px 2px rgb(var(--shadow-color) / 0.04),
+    0 12px 32px -12px rgb(var(--shadow-color) / 0.12);
+}
+.card-shadow-hover {
+  box-shadow:
+    0 2px 4px rgb(var(--shadow-color) / 0.05),
+    0 24px 48px -16px rgb(var(--shadow-color) / 0.18);
+}
+
+/* ── Shared primitives ───────────────────────────────────────── */
+
+/* Pill buttons */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+.pill:active {
+  transform: scale(0.97);
+}
+
+/* Primary (espresso → cream text) / gold / ghost variants */
+.pill-primary {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+.pill-primary:hover {
+  background: var(--brand-strong);
+  box-shadow: 0 10px 24px -10px rgb(var(--shadow-color) / 0.45);
+}
+
+.pill-gold {
+  background: var(--gold);
+  color: #241d17;
+}
+.pill-gold:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 10px 24px -10px rgb(185 150 87 / 0.55);
+}
+
+.pill-ghost {
+  border: 1.5px solid var(--line);
+  color: var(--heading);
+  background: transparent;
+}
+.pill-ghost:hover {
+  border-color: var(--brand);
+}
+
+/* Fill sweep for primary buttons (arrow-btn style) */
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgb(255 255 255 / 0.28) 50%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[dir="rtl"] .btn-sweep::after {
+  transform: translateX(130%);
+}
+.btn-sweep:hover::after {
+  transform: translateX(130%);
+}
+[dir="rtl"] .btn-sweep:hover::after {
+  transform: translateX(-130%);
+}
+
+/* Letter-spaced overline label */
+.overline-tag {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+[dir="rtl"] .overline-tag {
+  letter-spacing: 0.05em;
+}
+
+/* Soft skeleton shimmer for lazy images */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--band);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgb(255 255 255 / 0.35) 50%,
+    transparent 70%
+  );
+  animation: shimmer 1.6s infinite;
+}
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ── Theme-switch circular reveal (View Transitions API) ─────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Fallback smooth transition */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, fill 0.5s ease, stroke 0.5s ease !important;
+  transition-delay: 0s !important;
+}
+
+/* ── Mobile book bar safe-area ───────────────────────────────── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.anim-fade { animation: fade-in 0.5s ease both; }
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Scroll-reveal keyframes (used by motion.tsx primitives) ─── */
+
+/* Stagger groups: children animate one-by-one when group activates */
+.stagger-group:not(.stagger-active) > * {
+  opacity: 0;
+}
+.stagger-group.stagger-active > * {
+  animation: reveal-up 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.stagger-group.stagger-active > *:nth-child(2)  { animation-delay: 0.1s; }
+.stagger-group.stagger-active > *:nth-child(3)  { animation-delay: 0.2s; }
+.stagger-group.stagger-active > *:nth-child(4)  { animation-delay: 0.3s; }
+.stagger-group.stagger-active > *:nth-child(5)  { animation-delay: 0.4s; }
+.stagger-group.stagger-active > *:nth-child(6)  { animation-delay: 0.5s; }
+.stagger-group.stagger-active > *:nth-child(7)  { animation-delay: 0.6s; }
+.stagger-group.stagger-active > *:nth-child(8)  { animation-delay: 0.7s; }
+.stagger-group.stagger-active > *:nth-child(9)  { animation-delay: 0.8s; }
+.stagger-group.stagger-active > *:nth-child(10) { animation-delay: 0.9s; }
+.stagger-group.stagger-active > *:nth-child(n + 11) { animation-delay: 1s; }
+
+/* Re-run stagger when the list changes (keyed by filter change) */
+.stagger-run > * {
+  animation: reveal-up 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.stagger-run > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger-run > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger-run > *:nth-child(4) { animation-delay: 0.24s; }
+.stagger-run > *:nth-child(5) { animation-delay: 0.32s; }
+.stagger-run > *:nth-child(6) { animation-delay: 0.40s; }
+.stagger-run > *:nth-child(7) { animation-delay: 0.48s; }
+.stagger-run > *:nth-child(8) { animation-delay: 0.56s; }
+
+/* Mount-time entrance animations (above the fold — pure CSS) */
+.anim-rise        { animation: reveal-up   0.85s cubic-bezier(0.16, 1, 0.3,  1) both; }
+.anim-pop         { animation: pop-in      0.5s  cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-nav-in      { animation: nav-in      0.75s cubic-bezier(0.16, 1, 0.3,  1) both; }
+.anim-drawer-in   { animation: drawer-in   0.4s  cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-pop-in      { animation: pop-in-big  0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s both; }
+.anim-icon-in     { animation: icon-in     0.5s  cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-slide-rtl   { animation: slide-x-neg 0.6s  cubic-bezier(0.16, 1, 0.3,  1) both; }
+.anim-slide-ltr   { animation: slide-x-pos 0.6s  cubic-bezier(0.16, 1, 0.3,  1) both; }
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes pop-in-big {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes nav-in {
+  from { opacity: 0; transform: translateY(-70px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes drawer-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes icon-in {
+  from { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  to   { opacity: 1; transform: rotate(0) scale(1); }
+}
+@keyframes slide-x-neg {
+  from { opacity: 0; transform: translateX(-56px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-x-pos {
+  from { opacity: 0; transform: translateX(56px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Hero slider slides: crossfade + slow zoom on activation */
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.hero-slide-active {
+  opacity: 1;
+  animation: zoom-soft 8s ease-out both;
+}
+@keyframes zoom-soft {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+
+/* FAQ accordion — animatable height via grid rows */
+.faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
+}
+.faq-body-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.faq-body > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Core reveal keyframes ──────────────────────────────────────── */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes reveal-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes reveal-from-start {
+  from {
+    opacity: 0;
+    transform: translateX(-52px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes reveal-from-end {
+  from {
+    opacity: 0;
+    transform: translateX(52px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Scroll Progress Bar glow pulse ────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* ── Hover / Micro-interactions & 3D Card Dynamics ───────────── */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+}
+
+.card-3d-hover {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.4s ease;
+  will-change: transform;
+}
+.card-3d-hover:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 20px 40px -15px rgba(185, 150, 87, 0.25), 0 0 20px -5px rgba(185, 150, 87, 0.15);
+  border-color: rgba(185, 150, 87, 0.6) !important;
+}
+
+/* Image Scale & Zoom on Hover */
+.img-zoom-hover {
+  overflow: hidden;
+}
+.img-zoom-hover img {
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.img-zoom-hover:hover img {
+  transform: scale(1.08);
+}
+
+/* Subtle Shimmer for High-Priority Gold Badges */
+.badge-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.badge-shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  animation: badge-shine 4s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes badge-shine {
+  0%, 70% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Section Transitions & Atmospheric Lighting ───────────────── */
+.section-blend-top {
+  position: relative;
+}
+.section-blend-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--bg), transparent);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── Reduced motion: stop decorative animation ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .skeleton::after {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Reveal elements must be instantly visible */
+  [style*="reveal-"],
+  [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

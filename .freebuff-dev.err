@@ -1,0 +1,58 @@
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\computeronline because it would include your home directory (C:\Users\computeronline).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+⚠ Blocked cross-origin request to Next.js dev resource /_next/hmr from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /__nextjs_font/geist-latin.woff2 from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⨯ ./src/app/page.tsx:508:1
+Error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  [90m506 |[0m                 <span className=[32m"absolute top-4 start-4 rounded-full bg-card/90 px-3.5 py...[0m
+  [90m507 |[0m                   {t(n.tag)}
+[31m[1m>[0m [90m508 |[0m }
+  [90m    |[0m [31m[1m^[0m
+  [90m509 |[0m                 </span>
+  [90m510 |[0m               </div>
+  [90m511 |[0m               <div className=[32m"p-6"[0m>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+⚠ Blocked cross-origin request to Next.js dev resource /__nextjs_original-stack-frames from "127.0.0.1".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['127.0.0.1'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins

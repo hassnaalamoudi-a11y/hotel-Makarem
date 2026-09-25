@@ -1,0 +1,11 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body{margin:0;background:#111;font:12px monospace;color:#eee}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px}
+figure{margin:0;position:relative}
+img{width:100%;height:200px;object-fit:cover;display:block}
+figcaption{position:absolute;bottom:0;left:0;background:#000c;padding:4px 6px}
+</style></head><body><div class="g" id="g"></div><script>
+const names="exterior-dusk lobby lobby-warm restaurant breakfast cafe dining iftar banquet pool prayer-room umrah-family deluxe-twin deluxe-queen deluxe-triple junior-suite family-suite executive-suite haram-view bedroom-cozy room-detail twin-beds bathroom".split(" ");
+document.getElementById("g").innerHTML=names.map(n=>`<figure><img src="/images/${n}.jpg"><figcaption>${n}</figcaption></figure>`).join("")+`<figure><img src="/images/exterior-dusk.png"><figcaption>exterior-dusk.png</figcaption></figure>`;
+</script></body></html>
